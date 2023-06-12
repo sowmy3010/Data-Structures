@@ -1,0 +1,56 @@
+//13.Write a C++ program with arrays to maintain two queues. Until the end of any of the two queues, delete one element from both of the queues, add them and push the result to a stack. #include<iostream>
+#include<stack>
+#include<queue>
+#include<iostream>
+using namespace std;
+class sumofelement
+{
+public:
+    stack<int>k;
+    int key1,key2;
+    void sum(queue<int> s,queue<int> p)
+    {
+        while(s.empty()==0&&p.empty()==0)
+        {
+            key1=s.front();
+            key2=p.front();
+            k.push(key1+key2);
+            s.pop();
+            p.pop();
+            }
+    }
+    void display(queue<int> s,queue<int> p)
+    {
+        while(!k.empty())
+        {
+            cout<<k.top();
+            k.pop();
+        }
+    }
+};
+int main()
+{
+    int m,n,key,i;
+    queue<int>s;
+    cout<<"Enter no.of elements in queue 1 : ";
+    cin>>m;
+    cout<<"Enter "<<m<<" elements : ";
+    for(i=0;i<m;i++)
+    {
+        cin>>key;
+        s.push(key);
+    }
+    queue<int>p;
+    cout<<"Enter no.of elements in queue 2 : ";
+    cin>>n;
+    cout<<"Enter "<<n<<" elements : ";
+    for(i=0;i<n;i++)
+    {
+        cin>>key;
+        p.push(key);
+    }
+    sumofelement ob;
+    ob.sum(s,p);
+    ob.display(s,p);
+    }
+
