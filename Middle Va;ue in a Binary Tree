@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+class node
+{
+public:
+    int data;
+    node* left;
+    node*right;
+};
+class binarytree
+{
+public:
+    int i,a[10];
+    binarytree()
+    {
+        i=0;
+    }
+node* inorder(node*root)
+{
+    if (root == NULL)
+    return 0;
+    inorder(root->left);
+    a[i]=root->data;
+    i++;
+    inorder(root->right);
+}
+};
+int main()
+{
+    int choice;
+    node* Root = newnode(1);
+    Root->left = newNode(2);
+    Root->right = newNode(3);
+    Root->left->left = newNode(4);
+    Root->left->right = newNode(5);
+    Root->right->left=newNode(6);
+        inorder(Root);
+        xout<<"Middle Element is "<<a[5];
+    return 0;
+}
+
+
