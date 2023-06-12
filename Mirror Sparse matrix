@@ -1,0 +1,90 @@
+#include<iostream>
+using namespace std;
+class node
+{
+public:
+    int col,value;
+    node*next;
+};
+class sparse
+{
+public:
+    int n;
+    node*a[10];
+    sparse(int r)
+    {
+        n=r;
+        for(int i=0;i<n;i++)
+            a[i]=NULL;
+    }
+    void createnode(int row,int col,int value)
+    {
+        node*nn=new node();
+        nn->next=NULL;
+        nn->col=col;
+        nn->value=value;
+        if(a[row]==NULL)
+            a[row]=nn;
+        else
+        {
+            node*curr=a[row];
+            while(curr->next!=NULL)
+                curr=curr->next;
+            curr->next=nn;
+        }}
+
+    void display()
+    {
+        int i;
+        for(i=0;i<n;i++)
+        {
+            node*curr=a[i];
+            cout<<"Row "<<i<<"--> ";
+            if(curr==NULL)
+            	cout<<"No values";
+            while(curr!=NULL)
+            {
+                cout<<curr->col<<" ,"<<curr->value<<"\t";
+                curr=curr->next;
+            }
+            cout<<endl;
+    }
+    }
+    void mirror()
+    {
+    	for(int i=0;i<n;i++)
+		{
+			if(a[i]!=NULL)
+			{
+				node*curr=a[i];
+				if(curr->next==NULL)
+					curr->col=n-1-curr->col;
+				else
+				{
+					while(curr!=NULL)
+					{
+
+					}
+				}
+			}
+		}
+    }
+};
+int main()
+{
+    int m,row,value,col,i,z;
+    cout<<"Enter the no. of rows : ";
+    cin>>m;
+    cout<<"Enter the no.of non zero elements : ";
+    cin>>z;
+    sparse ob(m);
+	for(i=0;i<z;i++)
+    {
+           cout<<"Enter row,column and value:";
+           cin>>row>>col>>value;
+			ob.createnode(row,col,value);
+    }
+  ob.display();
+  ob.mirror();
+  ob.display();
+}
