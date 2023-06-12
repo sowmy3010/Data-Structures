@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int i,j,m,n;
+	cout<<"Enter the no.of rows and columns in matrix:";
+	cin>>m>>n;
+	int a[m][n];
+	cout<<"Enter the array:";
+	for(i=0;i<m;i++)
+		for(j=0;j<n;j++)
+		cin>>a[i][j];
+	cout<<"\nOriginal Array : \n";
+       for(i=0;i<m;i++)
+		{
+		for(j=0;j<n;j++)
+		cout<<a[i][j];
+		cout<<"\n";
+		}
+		cout<<"\n Boundary of array:\n";
+		for(i=0;i<m;i++)
+		{
+			for(j=0;j<n;j++)
+			{
+				if(i==0 || j==0 || i==m-1 || j==n-1)
+					cout<<a[i][j]<<" ";
+				else
+					cout<<"  ";
+			}
+			cout<<"\n";
+		}
+}
