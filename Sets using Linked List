@@ -1,0 +1,197 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class node
+{
+public:
+ node*next;
+ int data;
+};
+class set
+{
+public:
+ void difference(node*head1,node*head2)
+ {
+ node*curr=head2;
+ cout<<"DIFFERENCE OF TWO LISTS A-B : ";
+ while(head1!=NULL)
+ {
+ int temp=0;
+ head2=curr;
+ while(head2!=NULL)
+ {
+ if(head1->data==head2->data)
+ {
+ temp=1;
+ break;
+ }
+ head2=head2->next;
+ }
+ if(temp==0)
+ cout<<head1->data<<" ";
+ head1=head1->next;
+ }
+ }
+ void intersection(node*head1,node*head2)
+ {
+ node*curr=head2;
+ cout<<"INTERSECTION OF TWO LISTS : ";
+ while(head1!=NULL)
+ {
+ int temp=0;
+ head2=curr;
+ while(head2!=NULL)
+ {
+ if(head1->data==head2->data)
+ {
+ temp=1;
+ break;
+ }
+ head2=head2->next;
+ }
+ if(temp==1)
+ cout<<head1->data<<" ";
+ head1=head1->next;
+ }
+ }
+ void unionset(node*head1,node*head2)
+ {
+ cout<<"UNION OF TWO LISTS ARE : ";
+ node*temp=head1;
+ while(temp!=NULL)
+ {
+ cout<<temp->data<<" ";
+ temp=temp->next;
+ }
+ temp=head1;
+ while(head2!=NULL)
+ {
+ int t=0;
+ head1=temp;
+ while(head1!=NULL)
+ {
+ if(head1->data==head2->data)
+ {
+ t=1;
+ break;
+ }
+ head1=head1->next;
+ }
+ if(t==0)
+ cout<<head2->data<<" ";
+ head2=head2->next;
+ }
+ }
+ int membership(node*head,int element)
+ {
+ while(head!=NULL)
+ {
+ if(head->data==element)
+ return 1;
+ head=head->next;
+ }
+ return 0;
+ }
+ int cardinality(node*head)
+ {
+ int count=0;
+ while(head!=NULL)
+ {
+ count++;
+ head=head->next;
+ }
+ return count;
+ }
+ node*getdata(node*head)
+ {
+ node*nn=new node();
+ cin>>nn->data;
+ if(head==NULL)
+ {
+ nn->next=NULL;
+ head=nn;
+ }
+ else
+ {
+ node*temp=head;
+ while(temp->next!=NULL)
+ temp=temp->next;
+ temp->next=nn;
+ nn->next=NULL;
+ }
+ return head;
+ }
+ void display(node*head)
+ {
+ while(head!=NULL)
+ {
+ cout<<head->data<<" ";
+ head=head->next;
+ }
+ }
+};
+int main()
+{
+ int i,choice,a,b,element,c;
+ set ob;
+ node*head1=NULL;
+ node*head2=NULL;
+ cout<<"\t\t\t\t*******************\n";
+ cout<<"\t\t\t\t\tSETS\n";
+ cout<<"\t\t\t\t*******************\n";
+ cout<<"ENTER ELEMENTS OF LIST 1 : ";
+ for(i=0;i<5;i++)
+ {
+ head1=ob.getdata(head1);
+ }
+ cout<<"ENTER ELEMENTS OF LIST 2 : ";
+ for(i=0;i<5;i++)
+ {
+ head2=ob.getdata(head2);
+ }
+ cout<<endl<<"ELEMENTS IN LIST 1 :";
+ ob.display(head1);
+ cout<<endl<<"ELEMENTS IN LIST 2 :";
+ ob.display(head2);
+ cout<<endl;
+ while(true)
+ {
+ cout<<endl<<endl<<"1-UNION OF TWO LIST"<<endl<<"2-INTERSECTION OF TWO 
+LIST"<<endl<<"3-DIFFERENCE OF TWO LIST"<<endl<<"4-MEMBERSHIP OF AN ELEMENT IN 
+LIST"<<endl<<"5-CARDINALITY OF LIST"<<endl<<"6-QUIT"<<endl;
+ cout<<"ENTER YOUR CHOICE : ";
+ cin>>choice;
+ switch(choice)
+ {
+ case 1:
+ ob.unionset(head1,head2);
+ break;
+ case 2:
+ ob.intersection(head1,head2);
+ break;
+ case 3:
+ ob.difference(head1,head2);
+ break;
+ case 4:
+ cout<<endl<<"ENTER AN ELEMENT TO FIND ITS MEMBERSHIP : ";
+ cin>>element;
+ a=ob.membership(head1,element);
+ b=ob.membership(head2,element);
+ if(a==1 && b==1)
+ cout<<"ELEMENT "<<element<<" FOUND IN BOTH THE LISTS"<<endl;
+ else if(a==1)
+ cout<<"ELEMENT "<<element<<" FOUND ONLY IN LIST 1"<<endl;
+ else if(b==1)
+ cout<<"ELEMENT "<<element<<" FOUND ONLY IN LIST 2"<<endl;
+ break;
+ case 5:
+ c=ob.cardinality(head1);
+ cout<<"NO.OF ELEMENTS IN LIST 1 IS : "<<c<<endl;
+ c=ob.cardinality(head2);
+ cout<<"NO.OF ELEMENTS IN LIST 2 IS : "<<c<<endl;
+ break;
+ case 6:
+ exit(0);
+ }
+ }
+}
