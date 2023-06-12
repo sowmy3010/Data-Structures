@@ -1,0 +1,69 @@
+
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+public:
+    int data;
+    node*next;
+};
+void display(node*head)
+{
+    while(head!=NULL)
+    {
+      cout<<head->data<<" ";
+        head=head->next;
+    }
+    cout<<endl;
+}
+//TO REVERSE A SINGLE LINKED LIST
+  void reverse(node *head)
+{
+	static node*h=NULL;
+	static node*curr=NULL;
+     if(head!=NULL)
+	 {
+	 	reverse(head->next);
+	 	node*nn=new node();
+	 	nn->data=head->data;
+	 	nn->next=curr;
+	 	if(h==NULL)
+	 		h=nn;
+	 	curr=nn;
+	 }
+    }
+
+int main()
+{
+    node*head=NULL;
+    cout<<"ENTER NO. OF ELEMENTS TO SORT : ";
+    int no;
+    cin>>no;
+    cout<<"ENTER "<<no<<" ELEMENTS : ";
+    if(head==NULL)
+    {
+        node*n=new node();
+        cin>>n->data;
+        n->next=NULL;
+        head=n;
+    }
+    int c=1;
+    node*curr=head;
+    while(c!=no)
+    {
+        node*nn=new node();
+        cin>>nn->data;
+        nn->next=NULL;
+        curr->next=nn;
+        curr=nn;
+        c++;
+        }
+        display(head);
+        node*h=reverse(head);
+        display(h);
+
+
+
+}
