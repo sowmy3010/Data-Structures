@@ -1,0 +1,108 @@
+#include<iostream>
+#include<stdlib.h>
+#define n 10
+using namespace std;
+class node
+{
+public:
+ node*next;
+ int data;
+};
+class hashtable
+{
+public:
+ node*a[n];
+ hashtable()
+ {
+ for(int i=0;i<10;i++)
+ a[i]=NULL;
+ }
+ void insertion(int data)
+ {
+ node*nn=new node();
+ nn->data=data;
+ nn->next=NULL;
+ if(a[data%n]==NULL)
+ a[data%n]=nn;
+ else
+ {
+ node*curr=a[data%n];
+ while(curr->next!=NULL)
+ curr=curr->next;
+ curr->next=nn;
+ }
+ }
+ void searchhash(int data)
+ {
+ int f=0;
+ for(int i=0;i<n;i++)
+ {
+ if(a[i]!=NULL)
+ {
+ node*curr=a[i];
+ while(curr!=NULL)
+ {
+ if(curr->data==data)
+ f=1;
+ curr=curr->next;
+ }
+ }
+ if(f==1)
+ {
+ cout<<data<<" found in row "<<i;
+ return;
+ }
+}
+if(f==0)
+ cout<<data<<" not found!!";
+ }
+ void display()
+ {
+ for(int i=0;i<n;i++)
+ {
+ if(a[i]==NULL)
+ cout<<"Null"<<endl;
+ else
+ {
+ node*curr=a[i];
+ while(curr!=NULL)
+ {
+ cout<<curr->data<<" ";
+ curr=curr->next;
+ }
+ cout<<endl;
+ }
+ }
+ }
+};
+int main()
+{
+ int data,ch;
+ hashtable ob;
+ while(true)
+ {
+ cout<<"\n1-Insert a data in hashtable \n2-Search a data in hashtable\n3-display datas in hashtable\n4-
+Exit\nEnter your choice:";
+ cin>>ch;
+ switch(ch)
+ {
+ case 1:
+ cout<<"Enter an element : ";
+ cin>>data;
+ ob.insertion(data);
+ break;
+ case 2:
+ cout<<"Enter an element to search : ";
+ cin>>data;
+ ob.searchhash(data);
+ break;
+ case 3:
+ cout<<"Elements in hashtable:\n";
+ ob.display();
+ break;
+ case 4:
+ cout<<"Program ends!!";
+ exit(0);
+ }
+ }
+}
