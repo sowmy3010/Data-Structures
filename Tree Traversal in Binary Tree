@@ -1,0 +1,98 @@
+//BINARY TREE
+
+#include<iostream>
+using namespace std;
+class node
+{
+public:
+    int data;
+    node* left;
+    node*right;
+};
+node* newNode(int data)
+{
+    node* temp = new node;
+    temp->data = data;
+    temp->left = temp->right = NULL;
+    return temp;
+}
+node* inorder(node*root)
+{
+    if (root == NULL)
+return 0;
+    inorder(root->left);
+    cout<<root->data;
+    inorder(root->right);
+}
+node* preorder(node*root)
+{
+    if (root == NULL)
+return 0;
+    cout<<root->data;
+    preorder(root->left);
+    preorder(root->right);
+}
+node* postorder(node*root)
+{
+    if (root == NULL)
+return 0;
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data;
+}
+int height(node*node)
+{
+    if(node==NULL)
+        return -1;
+    int left=height(node->left);
+    int right=height(node->right);
+    if(left>right)
+       return(left+1);
+    else
+        return(right+1);
+}
+int countnodes(node*root)
+{
+    if(root==NULL)
+        return 0;
+    else
+        return(1+countnodes(root->left)+countnodes(root->right));
+}
+int maximum(node* root)
+{
+    if (root == NULL)
+        return 0;
+    int maxi= root->data;
+    int left= maximum(root->left);
+    int right = maximum(root->right);
+    if(left>maxi)
+        maxi=left;
+    if(right>maxi)
+        maxi=right;
+    return maxi;
+
+}
+int main()
+{
+    int choice;
+    node* Root = newNode(1);
+    Root->left = newNode(2);
+    Root->right = newNode(3);
+    Root->left->left = newNode(4);
+    Root->left->right = newNode(5);
+    Root->right->left=newNode(6);
+        cout << "\nPreorder traversal of binary tree is ";
+        preorder(Root);
+        cout << "\nInorder traversal of binary tree is ";
+        inorder(Root);
+        cout << "\nPostorder traversal of binary tree is ";
+        postorder(Root);
+        int h=height(Root);
+        cout<<endl<<"Height of tree is "<<h<<endl;
+        int count=countnodes(Root);
+        cout<<"No.of nodes are "<<count<<endl;
+        int maximum_element=maximum(Root);
+        cout<<"Maximum element in the array is "<<maximum_element<<endl;
+        return 0;
+}
+
