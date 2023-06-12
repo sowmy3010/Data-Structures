@@ -1,0 +1,63 @@
+//12.Write a C++ program with array to maintain two stacks. Until the end of any of the two stacks, pop one element from both the stacks, add them and insert the result to an   array.
+#include<iostream>
+#include<stack>
+using namespace std;
+class sumofelement
+{
+public:
+    int arr[],i,size;
+    sumofelement(int m,int n)
+    {
+    	if(m<n)
+    		size=m;
+		else
+			size=n;
+        for(i=0;i<size;i++)
+        arr[i]=0;
+		i=0;
+    }
+    void sum(stack<int> s,stack<int> p)
+    {
+        for(int q=0;q<size;q++)
+            {
+        if(s.empty()==0&&p.empty()==0)
+        {
+            arr[i]=s.top()+p.top();
+            i++;
+            s.pop();
+            p.pop();
+        }
+            }
+    }
+    void display(stack<int> s,stack<int> p,int m,int n)
+    {
+        int q;
+        for(q=0;size;q++)
+            cout<<arr[q]<<" ";
+    }
+};
+int main()
+{
+    int m,n,key,i;
+    stack<int>s;
+    cout<<"Enter no.of elements in stack 1 : ";
+    cin>>m;
+    cout<<"Enter "<<m<<" elements : ";
+    for(i=0;i<m;i++)
+    {
+        cin>>key;
+        s.push(key);
+    }
+    stack<int>p;
+    cout<<"Enter no.of elements in stack 2 : ";
+    cin>>n;
+    cout<<"Enter "<<n<<" elements : ";
+    for(i=0;i<n;i++)
+    {
+        cin>>key;
+        p.push(key);
+    }
+    sumofelement ob(m,n);
+    ob.sum(s,p);
+    ob.display(s,p,m,n);
+    }
